@@ -9,10 +9,6 @@ This repository contains small, runnable Python scripts that demonstrate common 
 
 ## 📚 Learning Resources
 
-### **NEW: Interactive Jupyter Notebook Tutorial**
-
-We've created a comprehensive **Jupyter notebook** that explains all the graph theory concepts behind these algorithms!
-
 **`graph_theory_tutorial.ipynb`** includes:
 - 📖 **Graph fundamentals** - What are graphs? Types, terminology, and real-world examples
 - 🗺️ **Graph representations** - Adjacency lists vs matrices with working code examples
@@ -171,10 +167,4 @@ If you're new to graph theory, we recommend this learning path:
    - Try creating your own graph problems
    - Implement additional algorithms (Dijkstra, Bellman-Ford, etc.)
 
-## Next steps (ideas)
 
-- Add unit tests for BFS, DFS, and SPFA with small fixtures.
-- Extend `spfa.py` to also return predecessors to reconstruct shortest paths.
-- Unify graph input formats and add simple loaders from text/JSON.
-- Add visualization using matplotlib or networkx.
-- Implement more algorithms: Dijkstra's, Kruskal's MST, Topological Sort.
