@@ -1,8 +1,15 @@
 """
 calculate the diameter of a tree.
 the diameter is defined as the length of the longest path between any two nodes in the tree.
+functions:
+- tree_diameter(root: TreeNode) -> int
+- height_and_diameter(node: TreeNode) -> int
+
+tree_diameter: Calculate the diameter of the tree.
+height_and_diameter: Helper function to compute height and update diameter.
 
 """
+
 class TreeNode:
     def __init__(self, value):
         self.value = value

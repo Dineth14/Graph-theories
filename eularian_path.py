@@ -1,6 +1,7 @@
 """
 eularian path in a graph.
 the eularian path is a trail in a graph that visits every edge exactly once.
+
 functions:
 - has_eularian_path(num_nodes: int, edges: List[Tuple[int, int]]) -> bool
 - find_eularian_path(num_nodes: int, edges: List[Tuple[int, int]]) -> List[int]
