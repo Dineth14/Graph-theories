@@ -66,32 +66,51 @@ def labyrinth_shortest_path(grid: List[List[str]]) -> Tuple[int, List[Tuple[int,
 
     return -1, []
 
-#input
+# Example usage
 if __name__ == "__main__":
-
-#test grid
-   test_grid = [
+    # Test grid
+    test_grid = [
         ['.', 'S', '#', 'B', '.'],
         ['#', '.', '#', '#', '.'],
         ['.', '.', 'B', '.', '.'],
         ['.', '#', '#', '#', 'T'],
         ['.', '.', '.', 'B', '.']
     ]
-#input grid
-
-grid: List[List[str]] = [[''] * 5 for _ in range(5)]
-print("Enter the 5x5 grid row by row (use S, T, #, B, .):")
-for r in range(5):
-    for c in range(5):
-        grid[r][c] = input().strip().split()[0]
-
-length, path = labyrinth_shortest_path(grid)
-if length != -1:
-    print(f"Shortest path length: {length}")
-    print(f"Path: {path}")
-else:
-    print("No path found.")
-
+    
+    # Option 1: Use test grid
+    print("Using test grid:")
+    for row in test_grid:
+        print('  ', ' '.join(row))
+    
+    length, path = labyrinth_shortest_path(test_grid)
+    if length != -1:
+        print(f"\nShortest path length: {length}")
+        print(f"Path: {path}")
+    else:
+        print("\nNo path found.")
+    
+    # Option 2: Custom input grid
+    print("\n" + "="*50)
+    print("Or enter your own 5x5 grid:")
+    print("Enter each cell (S=start, T=target, #=wall, B=bridge, .=empty)")
+    print("Enter 5 characters per row (e.g., '.S#B.')")
+    
+    grid: List[List[str]] = []
+    for r in range(5):
+        while True:
+            row_input = input(f"Row {r+1}: ").strip().replace(' ', '')
+            if len(row_input) == 5:
+                grid.append(list(row_input))
+                break
+            else:
+                print(f"  Error: Please enter exactly 5 characters")
+    
+    length, path = labyrinth_shortest_path(grid)
+    if length != -1:
+        print(f"\nShortest path length: {length}")
+        print(f"Path: {path}")
+    else:
+        print("\nNo path found.")
 
 
 
