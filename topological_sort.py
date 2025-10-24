@@ -1,24 +1,6 @@
 """
 Topological Sort for Directed Acyclic Graphs (DAG)
-=================================================
 
-A topological sort is a linear ordering of vertices in a directed acyclic graph
-such that for every directed edge (u, v), vertex u comes before v in the ordering.
-
-Applications:
-- Task scheduling with dependencies
-- Build systems (compile order)
-- Course prerequisites
-- Resolving symbol dependencies
-
-Key Property: Only possible for DAGs (no cycles)
-
-Two Common Algorithms:
-1. Kahn's Algorithm (BFS-based): Uses in-degrees
-2. DFS-based: Uses post-order traversal
-
-Time Complexity: O(V + E)
-Space Complexity: O(V)
 """
 
 from collections import deque
@@ -28,27 +10,6 @@ from typing import Dict, List, Set, Optional, Deque
 def topological_sort_kahn(graph: Dict[int, List[int]]) -> Optional[List[int]]:
     """
     Perform topological sort using Kahn's algorithm (BFS-based).
-    
-    Algorithm:
-    1. Calculate in-degree for each vertex
-    2. Add all vertices with in-degree 0 to queue
-    3. Process each vertex, decrement neighbors' in-degrees
-    4. Add neighbors with in-degree 0 to queue
-    5. If all vertices processed, return order; otherwise, cycle exists
-    
-    Args:
-        graph: Directed adjacency list {node: [neighbors]}
-        
-    Returns:
-        Topologically sorted list of vertices, or None if cycle detected
-        
-    Time Complexity: O(V + E)
-    Space Complexity: O(V)
-    
-    Example:
-        >>> graph = {0: [1, 2], 1: [3], 2: [3], 3: []}
-        >>> topological_sort_kahn(graph)
-        [0, 1, 2, 3]  # or [0, 2, 1, 3]
     """
     # Collect all vertices
     vertices: Set[int] = set(graph.keys())
@@ -86,21 +47,7 @@ def topological_sort_dfs(graph: Dict[int, List[int]]) -> Optional[List[int]]:
     """
     Perform topological sort using DFS (post-order traversal).
     
-    Algorithm:
-    1. Mark all vertices as unvisited
-    2. For each unvisited vertex, perform DFS
-    3. Add vertex to result after visiting all descendants (post-order)
-    4. Reverse the result to get topological order
-    5. Detect cycles using a "visiting" state
-    
-    Args:
-        graph: Directed adjacency list {node: [neighbors]}
-        
-    Returns:
-        Topologically sorted list of vertices, or None if cycle detected
-        
-    Time Complexity: O(V + E)
-    Space Complexity: O(V)
+
     """
     # Collect all vertices
     vertices: Set[int] = set(graph.keys())
@@ -149,15 +96,7 @@ def has_cycle(graph: Dict[int, List[int]]) -> bool:
     """
     Check if a directed graph has a cycle.
     
-    Uses DFS with three states to detect back edges.
-    
-    Args:
-        graph: Directed adjacency list
-        
-    Returns:
-        True if cycle exists, False otherwise
-        
-    Time Complexity: O(V + E)
+
     """
     vertices: Set[int] = set(graph.keys())
     for neighbors in graph.values():
@@ -191,21 +130,8 @@ def has_cycle(graph: Dict[int, List[int]]) -> bool:
 
 
 def all_topological_sorts(graph: Dict[int, List[int]]) -> List[List[int]]:
-    """
-    Generate all possible topological orderings of a DAG.
+ 
     
-    Uses backtracking to explore all valid orderings.
-    
-    Args:
-        graph: Directed adjacency list (must be a DAG)
-        
-    Returns:
-        List of all possible topological orderings
-        
-    Time Complexity: O(V! × E) in worst case (many valid orderings)
-    
-    Note: Expensive for large graphs with many valid orderings.
-    """
     vertices: Set[int] = set(graph.keys())
     for neighbors in graph.values():
         vertices.update(neighbors)

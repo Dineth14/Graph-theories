@@ -1,27 +1,6 @@
 """
 Dijkstra's Algorithm for Shortest Paths (Non-Negative Weights Only)
-===================================================================
 
-Dijkstra's algorithm finds shortest paths from a source vertex to all other
-vertices in a weighted graph with NON-NEGATIVE edge weights. It's faster than
-Bellman-Ford but cannot handle negative weights.
-
-Algorithm:
-1. Initialize distances: source = 0, all others = infinity
-2. Use a priority queue (min-heap) to always process the closest unvisited vertex
-3. For each vertex, relax all outgoing edges
-4. Repeat until all vertices are processed
-
-Key Difference from Bellman-Ford:
-- Bellman-Ford: O(V × E), handles negative weights
-- Dijkstra: O((V + E) log V), requires non-negative weights
-
-Time Complexity: O((V + E) log V) with binary heap
-Space Complexity: O(V)
-
-Why No Negative Weights?
-Dijkstra's greedy approach assumes that once a vertex is processed,
-its shortest distance is final. Negative weights can invalidate this assumption.
 """
 
 import heapq
@@ -31,26 +10,7 @@ from typing import Dict, List, Tuple, Set
 def dijkstra(graph: Dict[int, List[Tuple[int, float]]], start_node: int) -> Dict[int, float]:
     """
     Perform Dijkstra's algorithm to find shortest paths from start_node.
-    
-    Args:
-        graph: Adjacency list with NON-NEGATIVE edge weights
-               Format: {node: [(neighbor, weight), ...]}
-        start_node: The source vertex
-        
-    Returns:
-        Dictionary mapping each vertex to its shortest distance from start_node
-        
-    Raises:
-        KeyError: If start_node is not in the graph
-        ValueError: If negative edge weights are detected
-        
-    Time Complexity: O((V + E) log V)
-    Space Complexity: O(V)
-    
-    Example:
-        >>> graph = {0: [(1, 4), (2, 1)], 1: [(3, 1)], 2: [(1, 2), (3, 5)], 3: []}
-        >>> dijkstra(graph, 0)
-        {0: 0, 1: 3, 2: 1, 3: 4}
+
     """
     if start_node not in graph:
         raise KeyError(f"Start node {start_node} not in graph")
@@ -101,20 +61,7 @@ def dijkstra(graph: Dict[int, List[Tuple[int, float]]], start_node: int) -> Dict
 def dijkstra_with_path(graph: Dict[int, List[Tuple[int, float]]], 
                        start_node: int, 
                        end_node: int) -> Tuple[float, List[int]]:
-    """
-    Find shortest path and distance from start_node to end_node.
-    
-    Args:
-        graph: Adjacency list with non-negative edge weights
-        start_node: Source vertex
-        end_node: Target vertex
-        
-    Returns:
-        Tuple of (distance, path) where path is list of vertices from start to end
-        Returns (inf, []) if no path exists
-        
-    Time Complexity: O((V + E) log V)
-    """
+
     if start_node not in graph:
         raise KeyError(f"Start node {start_node} not in graph")
     
